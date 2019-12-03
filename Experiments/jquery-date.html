@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="../jquery-ui.css">
+  <script src="../jquery.js"></script>
+  <script src="../jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({ minDate: 0});
+  } );
+  </script>
+</head>
+<body>
+ 
+<p>Date: <input type="text" id="datepicker"></p>
+<button onclick="test()">click me!</button>
+ 
+ <script>
+   var dateSelect = document.getElementById("datepicker");
+   function test() {
+        console.log(dateSelect.value);
+        console.log(dateSelect.text);
+   }
+ </script>
+</body>
+</html>

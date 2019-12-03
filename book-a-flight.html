@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eastfront Airlines</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!-- jQuery datepicker stuff -->
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script src="jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#datepicker" ).datepicker({ minDate: 0});
+    } );
+    </script>
+    
+    <style>
+    main {
+      font-size: 25px;
+      position: relative;
+      background-color: #383b47;
+    }
+    main img {
+      filter: brightness(70%);
+    }
+    main form {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fdfdfd;
+      width: 60vw;
+      height: 500px;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 22px;
+    }
+    .form-header {
+      background-color: #0a4e98;
+      color: #fdfdfd;
+      padding: 10px 20px;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .form-entry {
+      padding: 10px;
+      color: #170080;
+      font-weight: 600;
+    }
+    .form-entry img {
+      padding: 10px;
+    }
+    .form-entry span {
+      vertical-align: 70%;
+    }
+    .form-entry select {
+      margin-left: 10px;
+      padding: 7px 12px;
+      background-color: #0180cb;
+      font-size: 18px;
+      color: #fdfdfd;
+      border: none
+    }
+    .form-entry input {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background-color: #0180cb;
+      font-size: 18px;
+      color: #fdfdfd;
+      border: none;
+    }
+    
+    .form-info {
+      position: absolute;
+      padding: 30px;
+      line-height: 1.5;
+      top: 10%;
+      left: 70%;
+      z-index: -1;
+      font-size: 22px;
+      background-color: #0180cb;
+      color: #fdfdfd;
+      list-style-type: square;
+    }
+    .form-info li {
+      font-size: 16px;
+      transform: translate(10px);
+      list-style-type: square;
+    }
+    
+    button {        /* the universal button styler */
+      background-color: #0a4e98;
+      color: #fdfdfd;
+      font-size: 26px;
+      border: none;
+      padding: 15px 25px;
+    }
+    
+    form button {
+      position: absolute;
+      border: none;
+      top: 82%;
+      left: 68%;
+      opacity: 0.8;
+      filter: brightness(90%);
+      cursor: auto;
+    }
+    form button:active {
+      background-color: #083578;
+    }
+    
+    .ticket-container {
+      position: relative;
+    }
+    .ticket-container img {
+      position: absolute;
+      top: 50%;
+      left: 30.1%;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+    
+    .ticket-header {
+      background: #383b47;
+      width: 100%;
+      padding-bottom: 6px;
+      text-align: center;
+      color: #fdfdfd;
+    }
+    .ticket-header p {
+      font-size: 16px;
+    }
+    
+    #ticket {
+      text-align: center;
+      color: #170080;
+      width: 100%;
+      background-color: #f0faff;
+      border-bottom: 2px solid #383b47;
+      display: grid;
+      grid-template-columns: 30% 30% 40%;
+      
+      display: none;
+    }
+    
+    .ticket-styler p {
+      padding: 10px;
+      font-size: 18px;
+    }
+    .ticket-styler h3 {
+      padding-top: 25px;
+      padding-bottom: 10px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    
+    .ticket-price {
+      background-color: #0180cb;
+      color: #fdfdfd;
+      border-left: 2px solid #383b47;
+    }
+    .price-amount {
+      margin: 20px;
+    }
+    .ticket-price h3 {
+      padding: 8px;
+    }
+    .price-aircraft {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .price-aircraft * {
+      display: block;
+    }
+    .price-aircraft div {
+      margin: 5px auto 15px auto;
+    }
+    .price-aircraft p {
+      text-align: left;
+      font-size: 16px;
+      padding-top: 3px;
+    }
+    
+    .price-aircraft button {
+      cursor: pointer;
+    }
+    #thankyou {
+      display: none;
+      padding: 0 20px;
+    }
+    
+    
+    .content {
+      margin: 0 auto;
+      width: 80%;
+      font-size: 22px;
+      color: #383b47;
+      padding: 25px 0px;
+    }
+    
+    .content iframe {
+      display: block;
+      margin: 20px auto;
+      width: 70vw;
+      height: 42vw;
+
+    }
+    .content img {
+      display: block;
+      width: 65%;
+      margin: 20px auto;
+    }
+    
+    /* Tablet Responsive */
+    @media screen and (max-width: 1150px) {
+      main img {
+        height: 800px;
+      }
+      main form {
+        width: 70%;
+        height: 600px;
+        top: 40%;
+      }
+      .form-entry {
+        padding: 5px;
+        font-size: 23px;
+      }
+      .form-entry img {
+        padding-left: 15px;
+        width: 40px;
+        height: 40px;
+      }
+      .form-entry span {
+        vertical-align: 30%;
+      }
+      .form-entry select {
+        display: block;
+        margin-left: 55px;
+        padding: 4px 8px;
+        font-size: 17px;
+      }
+      select#people {
+        transform: translate(158px);
+      }
+      .form-entry input {
+        display: block;
+        margin-left: 55px;
+        padding: 4px 8px;
+        font-size: 17px;
+      }
+      .form-info {
+        position: static;
+        margin-top: 25px;
+        padding: 15px 40px;
+        padding-bottom: 100px;
+      }
+      form button {
+        top: 112%;
+        left: 52%;
+        font-size: 22px;
+      }
+      #ticket {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+      .ticket-arrival {
+        margin-bottom: 20px;
+      }
+      .ticket-price {
+        border: none;
+      }
+      .content iframe {
+        margin: 20px auto;
+        width: 90%;
+      }
+    }
+
+    /* Phone Responsive */
+    @media screen and (max-width: 620px) {
+      main img {
+        height: 800px;
+      }
+      main form {
+        width: 100%;
+        height: 600px;
+        top: 40%;
+      }
+      .form-header {
+        font-size: 24px;
+      }
+      .form-entry {
+        padding: 5px;
+        font-size: 20px;
+      }
+      .form-entry img {
+        padding-left: 15px;
+        width: 35px;
+        height: 35px;
+      }
+      .form-entry span {
+        vertical-align: 30%;
+      }
+      .form-entry select {
+        margin-left: 55px;
+        padding: 4px 8px;
+        font-size: 14px;
+      }
+      select#people {
+        transform: translate(130px);
+      }
+      .form-entry input {
+        margin-left: 55px;
+        padding: 4px 8px;
+        font-size: 14px;
+      }
+      .form-info {
+        margin-top: 25px;
+        padding: 10px 20px;
+        padding-bottom: 80px;
+        font-size: 18px;
+      }
+      .form-info li {
+        font-size: 14px;
+      }
+      form button {
+        top: 101%;
+        left: 50%;
+        font-size: 20px;
+        padding: 10px 20px;
+      }
+      #ticket {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+      }
+      .ticket-styler p {
+        font-size: 16px;
+        padding: 7px;
+      }
+      .ticket-arrival h3 {
+        padding-top: 15px;
+      }
+      .ticket-arrival {
+        margin-bottom: 20px;
+      }
+      .ticket-price {
+        border: none;
+      }
+      .price-aircraft p {
+        font-size: 14px;
+      }
+      .price-aircraft button {
+        font-size: 20px;
+        padding: 10px 20px;
+      }
+      
+      .content iframe {
+        margin: 20px auto;
+        width: 90%;
+      }
+    }
+    
+      
+    </style>
+  </head>
+  <body>
+    
+    <header>
+      <div class="title">
+      <a href="index.html"><img src="images/logo.png" alt="logo" height="65px" width="auto"></a>
+      <a href="index.html"><h1>Eastfront Airlines</h1></a>
+      </div>
+      <div class="navbar">
+      <a href="about-us.html">About Us</a>
+      <a href="book-a-flight.html">Book a Flight</a>
+      <a href="rewards-program.html">Rewards Program</a>
+      <a href="careers.html">Careers</a>
+      </div>
+    </header>
+    
+    <main>
+      <img src="images/book-a-flight-heroimage.jpg" alt="" width="100%" height="750px">
+      <form>
+        <div class="form-header">Book a Flight</div>
+        <div class="form-entry">
+          <img src="images/book-a-flight1.png" width="50px">
+          <span>Departure
+          <select id="departure" onchange="checkInputs()">
+            <option value="none"></option>
+            <option value="pittsburgh">Pittsburgh, PA (PIT)</option>
+            <option value="philadelphia">Philadelphia, PA (PHL)</option>
+            <option value="cleveland">Cleveland, OH (CLE)</option>
+            <option value="columbus">Columbus, OH (CMH)</option>
+            <option value="atlantic-city">Atlantic City, NJ (ACY)</option>
+            <option value="charleston">Charleston, WV (CRW)</option>
+            <option value="new-york-city">New York City, NY (JFK)</option>
+            <option value="buffalo">Buffalo, NY (BUF)</option>
+            <option value="baltimore">Baltimore, MD (BWI)</option>
+          </select></span>
+        </div>
+        <div class="form-entry">
+          <img src="images/book-a-flight2.png" width="50px">
+          <span>Arrival
+          <select id="arrival" onchange="checkInputs()">
+            <option value="none"></option>
+            <option value="pittsburgh">Pittsburgh, PA (PIT)</option>
+            <option value="philadelphia">Philadelphia, PA (PHL)</option>
+            <option value="cleveland">Cleveland, OH (CLE)</option>
+            <option value="columbus">Columbus, OH (CMH)</option>
+            <option value="atlantic-city">Atlantic City, NJ (ACY)</option>
+            <option value="charleston">Charleston, WV (CRW)</option>
+            <option value="new-york-city">New York City, NY (JFK)</option>
+            <option value="buffalo">Buffalo, NY (BUF)</option>
+            <option value="baltimore">Baltimore, MD (BWI)</option>
+          </select></span>
+        </div>
+        <div class="form-entry">
+          <img src="images/book-a-flight3.png" width="50px">
+        <span>Date of Flight
+        <input type="text" id="datepicker" onchange="checkInputs()"></span>
+        </div>
+        <div class="form-entry">
+          <img src="images/book-a-flight4.png" width="50px">
+          <span>Number of People
+          <select id="people" onchange="checkInputs()">
+            <option value="none"></option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+          </select></span>
+        </div>
+        <div class="form-info">
+          Flight Information:
+          <ul>
+            <li>all flights are one-way, non-stop</li>
+            <li>flights are exclusively operated by Eastfront</li>
+            <li>infants under 2 years old are free of admission</li>
+          </ul>
+        </div>
+        <button type="button" id="search-flight" onclick="createTicket()" disabled="true">Search Flight</button>
+      </form>
+    </main>
+    
+    <div class="ticket-container">
+      <div class="ticket-header">
+        <p id="flight-number"></p>
+      </div>
+      <img src="images/book-a-flight-ticket.png" id="ticket-image" width="14%">
+      <div id="ticket" class="ticket-styler">
+        <div class="ticket-departure">
+          <h3>Departure</h3>
+          <p id="departure-city">cityName (XYZ)</p>
+          <p id="departure-date">date</p>
+          <p id="departure-time">time</p>
+        </div>
+        <div class="ticket-arrival">
+          <h3>Arrival</h3>
+          <p id="arrival-city">cityName (XYZ)</p>
+          <p id="arrival-date">date</p>
+          <p id="arrival-time">time</p>
+        </div>
+        <div class="ticket-price">
+          <div class="price-amount">
+            <h3>Price: <b id="price">$xyz</b></h3>
+            <h3>Total Price: <b id="price-total">$XYZ</b></h3>
+          </div>
+          <div class="price-aircraft">
+            <div>
+              <p>Aircraft Type: Boeing 787</p>
+              <p id="price-people">Number of Passengers: XYZ</p>
+            </div>
+            <div>
+              <button id="confirm-payment" onclick="confirm()">Confirm Payment</button>
+              <p id="thankyou">Your flight has been successfully booked. Thank you for choosing Eastfront Airlines!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <div class="content">
+        <h2>Eastfront is currently serving these 9 major cities.</h2>
+        <p><i>We strive for our flights to be the fastest, safest, and the most affordable.</i></p>
+        <iframe
+        src="https://www.google.com/maps/d/embed?mid=1_PjZSe1TmZUfr_AXWuNpPPzuxI1L8y8i">
+          <img src="images/map.png" alt="map of our flight services">
+        </iframe>
+    </div>
+    
+    <footer>
+      <div class="footer-info">
+        <a href="terms-and-conditions.html">Terms and Conditions</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="credits.html">Credits</a>
+        <p>Contact Phone Number: +1-(555)-555-5555</p>
+      </div>
+      <div class="footer-logo">
+        <img src="images/logo-dark.png" width="60px" height="auto">
+        <p><i>Fly it the simple way.&trade;</i></p>
+        <p>&copy; 2019 Eastfront Airlines</p>
+        <p>All rights reserved</p>
+      </div>
+      <div class="footer-media">
+        <p>Follow us</p>
+        <a href="https://facebook.com" target="_blank"><img src="images/facebook.png"></a>
+        <a href="https://twitter.com" target="_blank"><img src="images/twitter.png"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png"></a>
+        <a href="https://instagram.com" target="_blank"><img src="images/instagram.png"></a>
+      </div>
+    </footer>
+    
+    <script>
+    
+    /*
+    SELECTING <FORM> <SELECT> ELEMENTS: (notes)
+      - use document.getElementById("idname") of the <select> dropdown to acquire the dropdown (make this a variable!)
+      - use document.getElementsById("idname").selectedIndex to identify the index NUMBER that is currently selected by the user
+      - use document.getElementsById("idname").options to select the HTMLCOLLECTION of the dropdown list -> each option item is indexed, starting from 0 (like an array)
+      - use <SELECT>.options[<SELECT>.selectedIndex].(value or text) to get either the value or text of the currently selected option
+      - use .value to find the value attribute, and use .text to find the text content
+    */
+    
+      // gets the ticket menu div
+      var ticketMenu = document.getElementById("ticket");
+      var ticketImg = document.getElementById("ticket-image");
+    
+      // gets the search flight button
+      var searchButton = document.getElementById("search-flight");
+      
+      // gets the confirm payment button
+      var confirmButton = document.getElementById("confirm-payment");
+      
+      // gets the thankyou finalization message
+      var thankYou = document.getElementById("thankyou");
+      
+      // gets the <select> entry for all 4 forms
+      var departureEntry = document.getElementById("departure");
+      var arrivalEntry = document.getElementById("arrival");
+      var dateEntry = document.getElementById("datepicker");
+      var peopleEntry = document.getElementById("people");
+      
+      
+      // gets the spots on the ticket to be filled-in
+      var departureCity = document.getElementById("departure-city");
+      var departureDate = document.getElementById("departure-date");
+      var departureTime = document.getElementById("departure-time");
+      
+      var arrivalCity = document.getElementById("arrival-city");
+      var arrivalDate = document.getElementById("arrival-date");
+      var arrivalTime = document.getElementById("arrival-time");
+      
+      var price = document.getElementById("price");
+      var priceTotal = document.getElementById("price-total");
+      var people = document.getElementById("price-people");
+      
+      var flightNum = document.getElementById("flight-number");
+      
+      
+      /* gets the selected responses chosen by the user
+      *time is randomly chosen from an array, price is randomly generated */
+      var departureCityResponse = departureEntry.options[departureEntry.selectedIndex].text;
+      var departureDateResponse = dateEntry.value;
+      var departureTimes = ["6:09 AM", "6:16 AM", "6:31 AM", "6:32 AM", "6:45 AM", "7:13 AM", "7:23 AM", "7:56 AM"];
+      
+      var arrivalCityResponse = arrivalEntry.options[arrivalEntry.selectedIndex].text;
+      // *arrivalDate is same as departureDate
+      var arrivalTimes = ["10:09 AM", "10:17 AM", "10:24 AM", "10:35 AM", "10:47 AM", "10:58 AM", "11:11 AM", "11:12 AM"];
+      
+      var peopleResponse = peopleEntry.options[peopleEntry.selectedIndex].value;
+      var randomPriceNum; // creates the random price number variable
+      var randomFlightNum; // cerates the random flight number variable
+      
+      function disableButton() {
+        searchButton.disabled = true;
+        searchButton.style.filter = "brightness(90%)";
+        searchButton.style.opacity = "0.8";
+        searchButton.style.cursor = "auto";
+      }
+      
+      function enableButton() {
+        searchButton.disabled = false;
+        searchButton.style.filter = "brightness(100%)";
+        searchButton.style.opacity = "1";
+        searchButton.style.cursor = "pointer";
+      }
+      
+      
+      function checkInputs() { // keep search flight disabled until all entries are filled
+        if
+          (departureEntry.options[departureEntry.selectedIndex].value === "none" ||       /* check departure entry form */
+          arrivalEntry.options[arrivalEntry.selectedIndex].value === "none" ||            /* check arrival entry form */
+          dateEntry.value === "" ||                                                       /* check date entry form (default value is nothing) */
+          peopleEntry.options[peopleEntry.selectedIndex].value === "none" ||              /* check people entry form */
+          departureEntry.options[departureEntry.selectedIndex].value === arrivalEntry.options[arrivalEntry.selectedIndex].value)    /* check if departure and flight are the same */
+          {
+          disableButton();
+        }
+        else {
+          enableButton();
+        }
+      }
+      
+      
+      function createTicket() { // update info and create the ticket
+        
+        // open up ticket menu
+        ticketMenu.style.display = "grid";
+        if (window.matchMedia("(min-width: 1151px)").matches) {
+          ticketImg.style.display = "initial";
+        }
+        else {
+          ticketImg.style.display = "none";
+        }
+        
+        // disable button
+        disableButton();
+        
+        // update submission responses
+        departureCityResponse = departureEntry.options[departureEntry.selectedIndex].text;
+        departureDateResponse = dateEntry.value;
+        
+        arrivalCityResponse = arrivalEntry.options[arrivalEntry.selectedIndex].text;
+        // *arrivalDate is same as departureDate
+        
+        peopleResponse = peopleEntry.options[peopleEntry.selectedIndex].value;
+        
+        // create a random number for price and flight
+        randomPriceNum = 75 + Math.floor(Math.random() * 80);
+        randomFlightNum = 100 + Math.floor(Math.random() * 175);
+        
+        
+        // change the ticket info
+        departureCity.innerHTML = departureCityResponse;
+        departureDate.innerHTML = departureDateResponse;
+        departureTime.innerHTML = departureTimes[Math.floor(Math.random() * departureTimes.length)] + " (EST)";
+
+        arrivalCity.innerHTML = arrivalCityResponse;
+        arrivalDate.innerHTML = departureDateResponse;  // set arrival date to same day as departure date
+        arrivalTime.innerHTML = arrivalTimes[Math.floor(Math.random() * arrivalTimes.length)] + " (EST)";
+        
+        people.innerHTML = "Number of Passengers: " + peopleResponse;
+        
+        price.innerHTML = "$" + randomPriceNum + " (per person)";
+        priceTotal.innerHTML = "$" + randomPriceNum * peopleResponse;
+        
+        flightNum.innerHTML = "Flight " + randomFlightNum;
+      }
+      
+      
+      function confirm() { // confirm the ticket
+        confirmButton.style.display = "none";
+        thankYou.style.display = "block";
+      }
+      
+    </script>
+  </body>
+</html>

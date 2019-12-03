@@ -1,0 +1,48 @@
+.main-styler {
+  text-align: left;
+  font-size: 18px;
+  margin: 8vw 8vw;
+  list-style-position: inside;
+}
+.main-styler h2 {
+  font-weight: 600;
+  padding-top: 25px;
+  font-size: 30px;
+}
+.main-styler p {
+  font-size: 18px;
+}
+
+
+
+
+
+/* Tablet Responsive */
+@media screen and (max-width: 1150px) {
+  .main-styler {
+    font-size: 16px;
+  }
+  .main-styler h2 {
+    font-size: 24px;
+  }
+  .main-styler p {
+    font-size: 16px;
+  }
+}
+
+
+
+
+
+/* Phone Responsive */
+@media screen and (max-width: 620px) {
+  .main-styler {
+    font-size: 13px;
+  }
+  .main-styler h2 {
+    font-size: 22px;
+  }
+  .main-styler p {
+    font-size: 13px;
+  }
+}

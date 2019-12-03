@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eastfront Airlines</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+    main {
+      background-color: #0a4e98;
+      color: #fdfdfd;
+    }
+    .main-header {
+      padding: 35px 0;
+      background-color: #383b47;
+      position: relative;
+      width: 100%;
+      height: 5vw;
+    }
+    @keyframes intro-text {
+      from {
+        left: -50%;
+        opacity: 0;
+      }
+      to {
+        left: 5%;
+        opacity: 1;
+      }
+    }
+    .main-header div {
+      position: absolute;
+      font-size: 4vw;
+      animation: 1s intro-text forwards;
+    }
+     #trademark {
+      font-size: 35px;
+      vertical-align: 35%;
+    }
+    
+    .main-img {
+      position: relative;
+      width: 100%;
+      height: 18vw;
+      background-color: #0a4e98;
+      overflow: hidden;
+    }
+    @keyframes intro-img {
+      from {
+        left: 100%;
+        opacity: 0;
+      }
+      to {
+        left: 50%;
+        opacity: 1;
+      }
+    }
+    .main-img img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      animation: 1s intro-img forwards 0.5s;
+    }
+    
+    .content {
+      text-align: left;
+      color: #383b47;
+      margin: 50px 6vw;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      grid-column-gap: 25px
+    }
+    .content h2 {
+      font-size: 56px;
+    }
+    .content p {
+      font-size: 36px;
+    }
+    .content li {
+      font-size: 20px;
+      padding: 5px 0px;
+    }
+    .left div {
+      margin: 50px 15px;
+    }
+    .long {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .short {
+      display: none;
+
+    }
+    .right p {
+      text-align: center;
+    }
+    
+    /* Tablet Responsive */
+    @media screen and (max-width: 1150px) {
+    .main-header {
+      padding: 35px 0;
+      height: 150px;
+    }
+    .main-header div {
+      font-size: 50px;
+      padding-right: 75px;
+    }
+    .main-img img {
+      width: 100%;
+    }
+    .main-img {
+      padding: 20px 0;
+    }
+    
+    .left h2 {
+      font-size: 44px;
+    }
+    .left p {
+      font-size: 28px;
+    }
+    .left li {
+      font-size: 18px;
+    }
+    .long {
+      display: none;
+    }
+    .short {
+      display: block;
+    }
+    .short img {
+      display: block;
+      margin: 0 auto;
+    }
+    .right p {
+      margin-top: 50px;
+      font-size: 28px;
+    }
+    
+    /* Phone Responsive */
+    @media screen and (max-width: 620px) {
+    .main-header {
+      padding: 30px 0;
+      height: 120px;
+    }
+    .main-header div {
+      font-size: 32px;
+      top: 8%;
+    }
+    .main-img img {
+      width: 110%;
+      
+    }
+    
+    .content {
+      grid-column-gap: 15px
+    }
+    .left div {
+      margin: 20px 15px;
+    }
+    .left h2 {
+      font-size: 30px;
+    }
+    .left p {
+      font-size: 22px;
+    }
+    .left li {
+      font-size: 15px;
+    }
+
+    .short img {
+      display: block;
+      margin: 0 auto;
+      width: 80%;
+      height: 80%;
+    }
+    .right p {
+      margin-top: 50px;
+      font-size: 22px;
+    }
+      
+    </style>
+  </head>
+  <body>
+    
+    <header>
+      <div class="title">
+      <a href="index.html"><img src="images/logo.png" alt="logo" height="65px" width="auto"></a>
+      <a href="index.html"><h1>Eastfront Airlines</h1></a>
+      </div>
+      <div class="navbar">
+      <a href="about-us.html">About Us</a>
+      <a href="book-a-flight.html">Book a Flight</a>
+      <a href="rewards-program.html">Rewards Program</a>
+      <a href="careers.html">Careers</a>
+      </div>
+    </header>
+    
+    
+    
+    <main>
+      <div class="main-header">
+        <div><em>FlightPoints</em><span id="trademark">&trade;</span> Loyalty Program</div>
+      </div>
+      <div class="main-img">
+        <img src="images/rewards-program-heroimage.png" width="80%">
+      </div>
+    </main>
+    
+    <div class="content">
+      <div class="left">
+        <h2>Earn more from your flights.</h2>
+        <div class="earn">
+          <p>How to earn FlightPoints:</p>
+          <ul>
+            <li>Acquire points every time you fly with us</li>
+            <li>The more miles you journey, the more points you earn</li>
+            <li>You can also get points by purchasing in-flight services like wi-fi and food</li>
+            <li>Frequent flyers can earn Prestige status, where they get more points even faster</li>
+          </ul>
+        </div>
+        <div class="redeem">
+          <p>Ways to Redeem FlightPoints:</p>
+          <ul>
+            <li>Book reduced or even free flights on your next trip</li>
+            <li>Reward yourself with other bonuses, such as free meals onboard</li>
+          </ul>
+        </div>
+      </div>
+      <div class="right">
+        <img class="long" src="images/rewards-program-desc.png">
+        <div class="short">
+          <img src="images/rewards-program-desc1.png" width="165px" height="165px">
+          <img src="images/rewards-program-desc2.png" width="165px" height="165px">
+          <img src="images/rewards-program-desc3.png" width="200px" height="200px">
+        </div>
+        <p>Contact us today to register or check your points.</p>
+      </div>
+    </div>
+    
+    <footer>
+      <div class="footer-info">
+        <a href="terms-and-conditions.html">Terms and Conditions</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="credits.html">Credits</a>
+        <p>Contact Phone Number: +1-(555)-555-5555</p>
+      </div>
+      <div class="footer-logo">
+        <img src="images/logo-dark.png" width="60px" height="auto">
+        <p><i>Fly it the simple way.&trade;</i></p>
+        <p>&copy; 2019 Eastfront Airlines</p>
+        <p>All rights reserved</p>
+      </div>
+      <div class="footer-media">
+        <p>Follow us</p>
+        <a href="https://facebook.com" target="_blank"><img src="images/facebook.png"></a>
+        <a href="https://twitter.com" target="_blank"><img src="images/twitter.png"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png"></a>
+        <a href="https://instagram.com" target="_blank"><img src="images/instagram.png"></a>
+      </div>
+    </footer>
+  </body>
+</html>

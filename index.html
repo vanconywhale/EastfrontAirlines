@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eastfront Airlines</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      
+      /* Hero Image styles */
+      main {
+        position: relative;
+      }
+      .hero-background {
+        filter: brightness(70%);
+      }
+      
+      @keyframes intro-text {
+        from {
+          top: 10%;
+          opacity: 0;
+        }
+        to {
+          top: 35%;
+          opacity: 1;
+        }
+      }
+      .hero-text {
+        text-align: center;
+        color: #fdfdfd;
+        font-family: "Alata", sans-serif;
+        position: absolute;
+        width: 80%;
+        left: 50%;
+        font-size: 5vw;
+        font-weight: 700;
+        transform: translate(-50%, -50%);
+        animation: 1s intro-text forwards;
+      }
+      
+      @keyframes intro-button {
+        from {
+          top: 75%;
+          opacity: 0;
+        }
+        to {
+          top: 70%;
+          opacity: 1;
+        }
+      }
+      .hero-button {
+        border: none;
+        color: #fdfdfd;
+        background: #0a4e98;
+        text-align: center;
+        font-size: 1.5vw;
+        padding: 1.4vw 2.4vw;
+        position: absolute;
+        cursor: pointer;
+        opacity: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 600;
+        text-decoration: none;
+        animation: 0.8s intro-button forwards 0.9s;
+      }
+      .hero-button:hover {
+        color: #170080;
+        background: #fdfdfd;
+      }
+      
+      
+      /* Slideshow Styles */
+      
+      @keyframes slider {
+        0% {
+          left: 0;
+        }
+        15% {
+          left: 0;
+        }
+        20% {
+          left: -100%;
+        }
+        35% {
+          left: -100%;
+        }
+        40% {
+          left: -200%;
+        }
+        55% {
+          left: -200%;
+        }
+        60% {
+          left: -300%;
+        }
+        75% {
+          left: -300%;
+        }
+        80% {
+          left: -400%;
+        }
+        95% {
+          left: -400%;
+        }
+      }
+      
+      .slider {
+        overflow: hidden;
+        width: 70%;
+        margin: 40px auto;
+      }
+      .slider figure div {
+        width: 20%;
+        float: left;
+      }
+      .slider figure img {
+        float: left;
+        width: 100%;
+        height: auto;
+      }
+      .slider figure {
+        position: relative;
+        width: 500%;
+        margin: 0;
+        left: 0;
+        animation: 24s slider infinite;
+      }
+      .slide p {
+        position: absolute;
+        font-size: 2.5vw;
+        font-weight: 400;
+        color: #fdfdfd;
+        padding: 15px 150px 15px 75px;
+        text-align: left;
+      }
+      .odd {
+        background-color: #0a4e98ee;
+      }
+      .even {
+        background-color: #170080ee;
+      }
+      
+      
+      /* Tablet Responsive */
+      @media screen and (max-width: 1150px) {
+        .hero-background {
+        width: 120%;
+        transform: translate(-10%);
+        }
+        .hero-text {
+        font-size: 6vw;
+        }
+        .hero-button {
+        font-size: 17px;
+        padding: 15px 25px;
+        }
+        .slider {
+        width: 95%;
+        margin: 30px auto;
+        }
+        .slide p {
+        font-size: 3.5vw;
+        padding: 15px 100px 15px 70px;
+        }
+      }
+      
+      /* Phone Responsive */
+      @media screen and (max-width: 620px) {
+        .hero-background {
+        width: 185%;
+        transform: translate(-22%);
+        }
+        .hero-text {
+          font-size: 9vw;
+        }
+        .hero-button {
+          font-size: 14px;
+          padding: 12px 22px;
+        }
+        .slider {
+          width: 100%;
+          margin: 0px;
+        }
+        .slide p {
+        font-size: 4vw;
+        padding: 10px 50px 10px 25px;
+        }
+      }
+      
+    </style>
+    
+  </head>
+  
+  <body>
+    
+    <header>
+      <div class="title">
+      <a href="index.html"><img src="images/logo.png" alt="logo" height="65px" width="auto"></a>
+      <a href="index.html"><h1>Eastfront Airlines</h1></a>
+      </div>
+      <div class="navbar">
+      <a href="about-us.html">About Us</a>
+      <a href="book-a-flight.html">Book a Flight</a>
+      <a href="rewards-program.html">Rewards Program</a>
+      <a href="careers.html">Careers</a>
+      </div>
+    </header>
+    
+    <main>
+      <img class="hero-background" src="images/homepage-heroimage.jpg" alt="overhead plane" width="100%" height="auto">
+      <div class="hero-text">Fly it the simple way.</div>
+      <a class="hero-button" href="book-a-flight.html">BOOK A FLIGHT</a>
+    </main>
+    
+    <div class="slider">
+    <figure>
+      <div class="slide">
+        <img src="images/homepage-slideshow1.jpg">
+        <p class="odd">Cheapest flights on the <br> Eastern Seaboard</p>
+      </div>
+      <div class="slide">
+        <img src="images/homepage-slideshow2.jpg">
+        <p class="even">Continuous trips to NYC <br> and other cities</p>
+      </div>
+      <div class="slide">
+        <img src="images/homepage-slideshow3.jpg">
+        <p class="odd">Explore hidden natural wonders</p>
+      </div>
+      <div class="slide">
+        <img src="images/homepage-slideshow4.jpg">
+        <p class="even">Always putting customer <br> satisfaction first</p>
+      </div>
+      <div class="slide">
+        <img src="images/homepage-slideshow5.jpg">
+        <p class="odd">Start your journey today</p>
+      </div>
+    </figure>
+    </div>
+    
+    <footer>
+      <div class="footer-info">
+        <a href="terms-and-conditions.html">Terms and Conditions</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="credits.html">Credits</a>
+          <p>Contact Phone Number: +1-(555)-555-5555</p>
+      </div>
+      <div class="footer-logo">
+        <img src="images/logo-dark.png" width="60px" height="auto">
+        <p><i>Fly it the simple way.&trade;</i></p>
+        <p>&copy; 2019 Eastfront Airlines</p>
+        <p>All rights reserved</p>
+      </div>
+      <div class="footer-media">
+        <p>Follow us</p>
+        <a href="https://facebook.com" target="_blank"><img src="images/facebook.png"></a>
+        <a href="https://twitter.com" target="_blank"><img src="images/twitter.png"></a>
+        <a href="https://linkedin.com" target="_blank"><img src="images/linkedin.png"></a>
+        <a href="https://instagram.com" target="_blank"><img src="images/instagram.png"></a>
+      </div>
+    </footer>
+  </body>
+</html>
