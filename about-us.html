@@ -8,41 +8,57 @@
     <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+      // make animations wait until page is loaded
+      document.body.classList.add('js-loading');
+
+      window.addEventListener("load", showPage);
+      
+      function showPage() {
+        document.body.classList.remove('js-loading');
+      }
+    </script>
     <style>
+      .js-loading * {
+        animation-play-state: paused !important;
+      }
+
 
     main {
       position: relative;
     }
     main img {
       filter: brightness(70%);
+      overflow: hidden;
     }
     
-    @keyframes intro-text {
+      @keyframes intro-text {
         from {
-          top: 30%;
+          transform: translate(-50%, -100%);
           opacity: 0;
         }
         to {
-          top: 50%;
+          transform: translate(-50%, -50%);
           opacity: 1;
         }
-    }
+      }
     .hero-text {
         text-align: center;
         color: #fdfdfd;
         font-family: "Alata", sans-serif;
         position: absolute;
+        top: 50%;
         width: 80%;
         left: 50%;
         font-size: 6vw;
         font-weight: 700;
-        transform: translate(-50%, -50%);
+        /*transform: translate(-50%, -50%);*/
         animation: 0.8s intro-text forwards;
       }
     .content {
       text-align: left;
       margin: 0 6vw;
-      color: #383b47;
+      color: #282833;
     }
     .content div {
       overflow: auto;
@@ -78,7 +94,7 @@
     }
     
     /* Phone Responsive */
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 670px) {
       main img {
         width: 185%;
         transform: translate(-23%);

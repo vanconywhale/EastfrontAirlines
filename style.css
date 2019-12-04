@@ -6,7 +6,7 @@
 }
 body {
   background-color: #fdfdfd;
-  color: #020202;
+  color: #383b47;
 }
 
 
@@ -118,10 +118,12 @@ main {
   padding: 10px 0px 15px 0px;
   font-size: 18px;
 }
+.footer-media a {
+  margin: 0 10px;
+}
 .footer-media img {
   max-width: 35px;
   max-height: 35px;
-  margin: 0 10px;
 }
 footer img:hover {
   cursor: pointer;
@@ -206,7 +208,7 @@ p {
 }
 
 /* PHONE RESPONSIVE */
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 670px) {
   h2 {
   font-size: 22px;
   }

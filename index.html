@@ -8,7 +8,21 @@
     <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+      // make animations wait until page is loaded
+      document.body.classList.add('js-loading');
+
+      window.addEventListener("load", showPage);
+      
+      function showPage() {
+        document.body.classList.remove('js-loading');
+      }
+    </script>
     <style>
+      .js-loading * {
+        animation-play-state: paused !important;
+      }
+      
       
       /* Hero Image styles */
       main {
@@ -16,15 +30,16 @@
       }
       .hero-background {
         filter: brightness(70%);
+        overflow: hidden;
       }
       
       @keyframes intro-text {
         from {
-          top: 10%;
+          transform: translate(-50%, -105%);
           opacity: 0;
         }
         to {
-          top: 35%;
+          transform: translate(-50%, -50%);
           opacity: 1;
         }
       }
@@ -32,22 +47,23 @@
         text-align: center;
         color: #fdfdfd;
         font-family: "Alata", sans-serif;
+        opacity: 0;
         position: absolute;
+        top: 35%;
         width: 80%;
         left: 50%;
         font-size: 5vw;
         font-weight: 700;
-        transform: translate(-50%, -50%);
         animation: 1s intro-text forwards;
       }
       
       @keyframes intro-button {
         from {
-          top: 75%;
+          transform: translate(-50%, -30%);
           opacity: 0;
         }
         to {
-          top: 70%;
+          transform: translate(-50%, -50%);
           opacity: 1;
         }
       }
@@ -62,10 +78,12 @@
         cursor: pointer;
         opacity: 0;
         left: 50%;
+        top: 70%;
         transform: translate(-50%, -50%);
         font-weight: 600;
         text-decoration: none;
-        animation: 0.8s intro-button forwards 0.9s;
+        animation: 0.8s intro-button forwards 0.8s;
+        box-shadow: 0px 4px 15px black;
       }
       .hero-button:hover {
         color: #170080;
@@ -169,7 +187,7 @@
       }
       
       /* Phone Responsive */
-      @media screen and (max-width: 620px) {
+      @media screen and (max-width: 670px) {
         .hero-background {
         width: 185%;
         transform: translate(-22%);
@@ -179,7 +197,7 @@
         }
         .hero-button {
           font-size: 14px;
-          padding: 12px 22px;
+          padding: 10px 20px;
         }
         .slider {
           width: 100%;

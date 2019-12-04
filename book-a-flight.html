@@ -39,6 +39,7 @@
       margin: 0 auto;
       text-align: left;
       font-size: 22px;
+      box-shadow: 0px 5px 30px black;
     }
     .form-header {
       background-color: #0a4e98;
@@ -189,6 +190,7 @@
     
     .price-aircraft button {
       cursor: pointer;
+      margin: 0 15px;
     }
     #thankyou {
       display: none;
@@ -200,7 +202,7 @@
       margin: 0 auto;
       width: 80%;
       font-size: 22px;
-      color: #383b47;
+      color: #282833;
       padding: 25px 0px;
     }
     
@@ -229,6 +231,7 @@
       }
       .form-entry {
         padding: 5px;
+        padding-left: 5vw;
         font-size: 23px;
       }
       .form-entry img {
@@ -269,6 +272,9 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
       }
+      .ticket-container img {
+        display: none !important;
+      }
       .ticket-arrival {
         margin-bottom: 20px;
       }
@@ -282,20 +288,19 @@
     }
 
     /* Phone Responsive */
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 670px) {
       main img {
-        height: 800px;
+        height: 660px;
       }
       main form {
         width: 100%;
         height: 600px;
-        top: 40%;
+        top: 44.8%;
       }
       .form-header {
         font-size: 24px;
       }
       .form-entry {
-        padding: 5px;
         font-size: 20px;
       }
       .form-entry img {
@@ -321,12 +326,12 @@
       }
       .form-info {
         margin-top: 25px;
-        padding: 10px 20px;
+        padding: 15px 25px;
         padding-bottom: 80px;
-        font-size: 18px;
+        font-size: 17px;
       }
       .form-info li {
-        font-size: 14px;
+        font-size: 13px;
       }
       form button {
         top: 101%;
@@ -339,8 +344,11 @@
         grid-template-rows: 1fr 1fr;
       }
       .ticket-styler p {
-        font-size: 16px;
-        padding: 7px;
+        font-size: 15px;
+        padding: 5px;
+      }
+      .ticket-styler h3 {
+        font-size: 18px;
       }
       .ticket-arrival h3 {
         padding-top: 15px;
@@ -352,16 +360,15 @@
         border: none;
       }
       .price-aircraft p {
-        font-size: 14px;
+        font-size: 13px;
       }
       .price-aircraft button {
         font-size: 20px;
         padding: 10px 20px;
       }
-      
       .content iframe {
         margin: 20px auto;
-        width: 90%;
+        width: 100%;
       }
     }
     
@@ -623,6 +630,10 @@
         else {
           ticketImg.style.display = "none";
         }
+        
+        // open confirm button
+        confirmButton.style.display = "block";
+        thankYou.style.display = "none";
         
         // disable button
         disableButton();

@@ -8,7 +8,22 @@
     <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+      // make animations wait until page is loaded
+      document.body.classList.add('js-loading');
+
+      window.addEventListener("load", showPage);
+      
+      function showPage() {
+        document.body.classList.remove('js-loading');
+      }
+    </script>
     <style>
+      .js-loading * {
+        animation-play-state: paused !important;
+      }
+    
+    
     main {
       background-color: #0a4e98;
       color: #fdfdfd;
@@ -22,16 +37,17 @@
     }
     @keyframes intro-text {
       from {
-        left: -50%;
+        transform: translateX(-60%);
         opacity: 0;
       }
       to {
-        left: 5%;
+        transform: translateX(0%);
         opacity: 1;
       }
     }
     .main-header div {
       position: absolute;
+      left: 5%;
       font-size: 4vw;
       animation: 1s intro-text forwards;
     }
@@ -49,11 +65,11 @@
     }
     @keyframes intro-img {
       from {
-        left: 100%;
+        transform: translate(0%, -50%);
         opacity: 0;
       }
       to {
-        left: 50%;
+        transform: translate(-50%, -50%);
         opacity: 1;
       }
     }
@@ -61,14 +77,13 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
       opacity: 0;
       animation: 1s intro-img forwards 0.5s;
     }
     
     .content {
       text-align: left;
-      color: #383b47;
+      color: #282833;
       margin: 50px 6vw;
       display: grid;
       grid-template-columns: 55% 45%;
@@ -142,7 +157,7 @@
     }
     
     /* Phone Responsive */
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 670px) {
     .main-header {
       padding: 30px 0;
       height: 120px;
@@ -152,7 +167,7 @@
       top: 8%;
     }
     .main-img img {
-      width: 110%;
+      width: 105%;
       
     }
     
