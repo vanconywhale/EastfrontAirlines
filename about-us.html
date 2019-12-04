@@ -8,17 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script>
-      // make animations wait until page is loaded
-      document.body.classList.add('js-loading');
-
-      window.addEventListener("load", showPage);
-      
-      function showPage() {
-        document.body.classList.remove('js-loading');
-      }
-    </script>
     <style>
+      
       .js-loading * {
         animation-play-state: paused !important;
       }
@@ -119,7 +110,18 @@
     </style>
   </head>
   <body>
+    <script>
+    // make animations wait until page is loaded
+    document.body.classList.add('js-loading');
+
+    window.addEventListener("load", showPage);
     
+    function showPage() {
+      document.body.classList.remove('js-loading');
+    }
+  </script>
+  
+  
     <header>
       <div class="title">
       <a href="index.html"><img src="images/logo.png" alt="logo" height="65px" width="auto"></a>
@@ -143,7 +145,7 @@
     <div class="section-one">
       <img src="images/about-us-section1.jpg" alt="landing airplane" width="30%">
       <h2>Who We Are</h2>
-      <p>Eastfront Airlines is a discount airline serving the Mid-Atlantic region of the United States. We offer flights in 9 major cities, stretching from Columbus to Atlantic City. Whether you are planning for a vacation nearby, visiting relatives from another state, or just looking to get away and explore somewhere new, Eastfront is always there and ready to bring you wherever you need to be.</p>
+      <p>Eastfront is a budget airline serving the Mid-Atlantic region of the United States. We offer flights in 9 major cities, stretching from Columbus to Atlantic City. Whether you are planning for a vacation nearby, visiting relatives from another state, or just looking to get away and explore somewhere new, Eastfront is always there and ready to bring you wherever you need to be.</p>
     </div>
     <div class="section-two">
       <img id="float-left" src="images/about-us-section2.jpg" alt="coastal bridge" width="30%">

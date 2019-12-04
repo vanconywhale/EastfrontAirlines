@@ -8,17 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Alata" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script>
-      // make animations wait until page is loaded
-      document.body.classList.add('js-loading');
-
-      window.addEventListener("load", showPage);
-      
-      function showPage() {
-        document.body.classList.remove('js-loading');
-      }
-    </script>
     <style>
+      
       .js-loading * {
         animation-play-state: paused !important;
       }
@@ -201,6 +192,17 @@
     </style>
   </head>
   <body>
+    <script>
+    // make animations wait until page is loaded
+    document.body.classList.add('js-loading');
+
+    window.addEventListener("load", showPage);
+    
+    function showPage() {
+      document.body.classList.remove('js-loading');
+    }
+    </script>
+    
     
     <header>
       <div class="title">
