@@ -24,16 +24,6 @@
         filter: brightness(70%);
       }
       
-      @keyframes intro-text {
-        from {
-          transform: translate(-50%, -105%);
-          opacity: 0;
-        }
-        to {
-          transform: translate(-50%, -50%);
-          opacity: 1;
-        }
-      }
       .hero-text {
         text-align: center;
         color: #fdfdfd;
@@ -47,10 +37,9 @@
         font-weight: 700;
         animation: 1s intro-text forwards;
       }
-      
-      @keyframes intro-button {
+      @keyframes intro-text {
         from {
-          transform: translate(-50%, -30%);
+          transform: translate(-50%, -105%);
           opacity: 0;
         }
         to {
@@ -58,6 +47,7 @@
           opacity: 1;
         }
       }
+      
       .hero-button {
         border: none;
         color: #fdfdfd;
@@ -75,6 +65,17 @@
         text-decoration: none;
         animation: 0.8s intro-button forwards 0.8s;
         box-shadow: 0px 4px 15px black;
+      }
+      @keyframes intro-button {
+        from {
+          transform: translate(-50%, -30%);
+          opacity: 0;
+        }
+        to {
+          transform: translate(-50%, -50%);
+          opacity: 1;
+        }
+        
       }
       .hero-button:hover {
         color: #170080;
