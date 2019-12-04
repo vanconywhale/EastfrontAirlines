@@ -24,21 +24,7 @@
         filter: brightness(70%);
       }
       
-      .hero-text {
-        text-align: center;
-        color: #fdfdfd;
-        font-family: "Alata", sans-serif;
-        opacity: 0;
-        position: absolute;
-        /*top: 35%;*/
-        width: 80%;
-        left: 50%;
-        font-size: 5vw;
-        font-weight: 700;
-        transform: translate(-50%, -50%);
-        animation: 1s intro-text forwards;
-      }
-      /*@keyframes intro-text {
+      @keyframes intro-text {
         from {
           transform: translate(-50%, -105%);
           opacity: 0;
@@ -47,18 +33,32 @@
           transform: translate(-50%, -50%);
           opacity: 1;
         }
-      }*/
-        @keyframes intro-text {
-          from {
-            top: 10%;
-            opacity: 0;
-          }
-          to {
-            top: 35%;
-            opacity: 1;
-        }
-        }
+      }
+      .hero-text {
+        text-align: center;
+        color: #fdfdfd;
+        font-family: "Alata", sans-serif;
+        opacity: 0;
+        position: absolute;
+        top: 35%;
+        width: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5vw;
+        font-weight: 700;
+        animation: 1s intro-text forwards;
+      }
       
+      @keyframes intro-button {
+        from {
+          transform: translate(-50%, -30%);
+          opacity: 0;
+        }
+        to {
+          transform: translate(-50%, -50%);
+          opacity: 1;
+        }
+      }
       .hero-button {
         border: none;
         color: #fdfdfd;
@@ -76,17 +76,6 @@
         text-decoration: none;
         animation: 0.8s intro-button forwards 0.8s;
         box-shadow: 0px 4px 15px black;
-      }
-      @keyframes intro-button {
-        from {
-          transform: translate(-50%, -30%);
-          opacity: 0;
-        }
-        to {
-          transform: translate(-50%, -50%);
-          opacity: 1;
-        }
-        
       }
       .hero-button:hover {
         color: #170080;
