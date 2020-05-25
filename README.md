@@ -1,6 +1,6 @@
 This website was created by RedMellon for the 2019 FBLA Website Design project.
 
-The website may not work properly in older browsers, such as internet explorer.
+Note: The website may not work properly in older browsers, such as internet explorer.
 
 General Notes:
 - pure HTML, CSS, and JS were used to make the website
@@ -9,6 +9,9 @@ General Notes:
 - paint.net was used to edit and format images, while Google Drawings was used to design the logo
 - Caret (a google extension) was used to type a edit the code
 *more credits regarding images can be found on the website!
+*UPDATE* added Round Trip 5/25/2020
+- calendar restriction for Round Trip based off of source from jQuery datepicker documentation:
+  https://jqueryui.com/datepicker/#date-range
 
 Navigation:
 - index.html is the homepage, while the other .html files are all subpages
