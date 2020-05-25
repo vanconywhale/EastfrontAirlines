@@ -15,8 +15,28 @@
     <script src="jquery-ui.js"></script>
     <script>
     $( function() {
-      $( "#datepicker" ).datepicker({ minDate: 0});
-    } );
+    var dateFormat = "mm/dd/yy",
+      from = $( "#datepicker" )
+        .datepicker({ minDate: 0 })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+        to = $( "#datepicker-two" ).datepicker({ minDate: 0 })
+        .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  } );
     </script>
     
     <style>
@@ -35,7 +55,7 @@
       transform: translate(-50%, -50%);
       background-color: #fdfdfd;
       width: 60vw;
-      height: 500px;
+      height: 520px;
       margin: 0 auto;
       text-align: left;
       font-size: 22px;
@@ -49,10 +69,30 @@
       margin-bottom: 10px;
     }
     .form-entry {
-      padding: 10px;
-      color: #170080;
+      padding: 12px;
+      color: #170080;11111111111
       font-weight: 600;
     }
+    .type-entry {
+      position: absolute;
+      left: 69%;
+      top: 71%;
+    }
+    .type-entry span {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .type-entry select {
+      background-color: #383b47;
+      -webkit-appearance: none;
+      color: #fdfdfd;
+      margin-left: 10px;
+      padding: 7px 35px 7px 10px;
+      font-size: 15px;
+      border: 1px solid #282833;
+      border-radius: 2px;
+    }
+    
     .form-entry img {
       padding: 10px;
     }
@@ -71,12 +111,29 @@
     }
     .form-entry input {
       margin-left: 10px;
-      padding: 5px 10px;
+      padding: 4px 8px;
       background-color: #0180cb;
       font-size: 18px;
       color: #fdfdfd;
       border: 2px solid #0a4e98;
       border-radius: 3px;
+    }
+    .date-row {
+      display: inline-block;
+      position: relative;
+      bottom: 5px;
+    }
+    .date-row div {
+      margin: 5px 0;
+    }
+    #datepicker, #datepicker-two {
+      width: 115px;
+      font-size: 15px;
+    }
+
+    #arrival-words {
+      filter: brightness(90%);
+      opacity: 0.6;
     }
     
     .form-info {
@@ -84,7 +141,7 @@
       padding: 30px;
       line-height: 1.5;
       top: 10%;
-      left: 70%;
+      left: 65%;
       z-index: -1;
       font-size: 22px;
       background-color: #0180cb;
@@ -113,6 +170,7 @@
       opacity: 0.8;
       filter: brightness(90%);
       cursor: auto;
+      transition: 0.3s;
     }
     form button:active {
       background-color: #083578;
@@ -121,6 +179,39 @@
     .ticket-container {
       position: relative;
     }
+    #ticket-select {
+      display: none;
+    }
+    /* NEW */
+    #ticket-select-RT {
+      display: none;
+    }
+    
+    .RT-confirm {
+      background-color: #0180cb;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      padding: 15px 0;
+    }
+    .RT-confirm div {
+      margin: auto auto;
+    }
+    .RT-confirm h4 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #fdfdfd;
+    }
+    .RT-confirm button {
+      cursor: pointer;
+      margin: 0 15px;
+      font-size: 28px;
+    }
+    .RT-confirm p {
+      color: #fdfdfd;
+      font-size: 18px;
+      padding: 0 20px;
+    }
+    
     .ticket-container img {
       position: absolute;
       top: 50%;
@@ -136,11 +227,14 @@
       text-align: center;
       color: #fdfdfd;
     }
+    .padding-extension {
+      padding: 5px 0px;
+    }
     .ticket-header p {
       font-size: 16px;
     }
     
-    #ticket {
+    .ticket-styler {
       text-align: center;
       color: #170080;
       width: 100%;
@@ -148,9 +242,8 @@
       border-bottom: 2px solid #383b47;
       display: grid;
       grid-template-columns: 30% 30% 40%;
-      
-      display: none;
     }
+    
     
     .ticket-styler p {
       padding: 10px;
@@ -171,6 +264,9 @@
     .price-amount {
       margin: 20px;
     }
+    .price-amount-RT {
+      margin: 10px;
+    }
     .ticket-price h3 {
       padding: 8px;
     }
@@ -189,18 +285,13 @@
       text-align: left;
       font-size: 16px;
       padding-top: 3px;
+      padding: 0 20px;
     }
     
     .price-aircraft button {
       cursor: pointer;
       margin: 0 15px;
     }
-    #thankyou {
-      display: none;
-      padding: 0 20px;
-    }
-    
-    
     .content {
       margin: 0 auto;
       width: 80%;
@@ -228,9 +319,9 @@
         height: 800px;
       }
       main form {
-        width: 70%;
+        width: calc(50% + 200px);
         height: 600px;
-        top: 40%;
+        top: 41.5%;
         box-shadow: none;
       }
       .form-entry {
@@ -252,8 +343,18 @@
         padding: 4px 8px;
         font-size: 17px;
       }
+      .date-row {
+        bottom: 0;
+        top: 12px;
+        margin-bottom: 15px;
+      }
+      #datepicker, #datepicker-two {
+      display: inline;
+      margin: 0 10px;
+      }
       select#people {
-        transform: translate(158px);
+        display: inline;
+        margin: 0 10px;
       }
       .form-entry input {
         display: block;
@@ -265,16 +366,32 @@
         position: static;
         margin-top: 25px;
         padding: 15px 40px;
-        padding-bottom: 100px;
+        padding-bottom: 90px;
+      }
+      .type-entry {
+        left: 18%;
+        top: 108%;
+        color: #fdfdfd;
+      }
+      .type-entry select {
+        border: 1px solid #fdfdfd;
       }
       form button {
-        top: 112%;
-        left: 52%;
+        top: 106%;
+        left: 62%;
         font-size: 22px;
       }
-      #ticket {
+      
+      .ticket-styler {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
+        border: none;
+      }
+      .RT-confirm {
+        border-top: 6px double #fdfdfd;
+      }
+      .RT-confirm p {
+        font-size: 16px;
       }
       .ticket-container img {
         display: none !important;
@@ -296,10 +413,13 @@
       main img {
         height: 660px;
       }
+      main {
+        height: 775px;
+      }
       main form {
         width: 100%;
         height: 600px;
-        top: 44.8%;
+        top: 38.6%;
       }
       .form-header {
         font-size: 24px;
@@ -308,7 +428,8 @@
         font-size: 20px;
       }
       .form-entry img {
-        padding-left: 15px;
+        padding-left: 10px;
+        padding-right: 7px;
         width: 35px;
         height: 35px;
       }
@@ -320,39 +441,60 @@
         padding: 4px 8px;
         font-size: 14px;
       }
-      select#people {
-        transform: translate(130px);
-      }
       .form-entry input {
         margin-left: 55px;
         padding: 4px 8px;
         font-size: 14px;
+      }
+      .date-row {
+        top: 24px;
+        margin-bottom: 30px;
+      }
+      #datepicker, #datepicker-two {
+      display: block;
+      margin: 0 10px;
+      font-size: 13px;
       }
       .form-info {
         margin-top: 25px;
         padding: 15px 25px;
         padding-bottom: 80px;
         font-size: 17px;
+        height: 150px;
       }
       .form-info li {
         font-size: 13px;
       }
+      .type-entry {
+        top: 109%;
+        left: 35%;
+      }
       form button {
-        top: 101%;
-        left: 50%;
+        top: 118%;
+        left: 40%;
         font-size: 20px;
         padding: 10px 20px;
       }
-      #ticket {
+      .RT-confirm {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        padding: 15px 5px;
+      }
+      .RT-confirm p {
+        font-size: 14px;
+      }
+      .RT-confirm h4 {
+        font-size: 22px;
+        margin-bottom: 12px;
+      }
+      .ticket-header {
+        padding: 5px;
       }
       .ticket-styler p {
         font-size: 15px;
         padding: 5px;
       }
       .ticket-styler h3 {
-        font-size: 18px;
+        font-size: 22px;
       }
       .ticket-arrival h3 {
         padding-top: 15px;
@@ -363,10 +505,17 @@
       .ticket-price {
         border: none;
       }
+      .price-aircraft {
+        padding: 0 5px;
+      }
       .price-aircraft p {
         font-size: 13px;
       }
       .price-aircraft button {
+        font-size: 20px;
+        padding: 10px 20px;
+      }
+      .RT-confirm button {
         font-size: 20px;
         padding: 10px 20px;
       }
@@ -400,7 +549,7 @@
         <div class="form-header">Book a Flight</div>
         <div class="form-entry">
           <img src="images/book-a-flight1.png" width="50px">
-          <span>Departure
+          <span>Takeoff
           <select id="departure" onchange="checkInputs()">
             <option value="none"></option>
             <option value="pittsburgh">Pittsburgh, PA (PIT)</option>
@@ -416,7 +565,7 @@
         </div>
         <div class="form-entry">
           <img src="images/book-a-flight2.png" width="50px">
-          <span>Arrival
+          <span>Landing
           <select id="arrival" onchange="checkInputs()">
             <option value="none"></option>
             <option value="pittsburgh">Pittsburgh, PA (PIT)</option>
@@ -432,8 +581,10 @@
         </div>
         <div class="form-entry">
           <img src="images/book-a-flight3.png" width="50px">
-        <span>Date of Flight
-        <input type="text" id="datepicker" onchange="checkInputs()"></span>
+        <div class="date-row">
+          <div>Departure Date <input type="text" id="datepicker" onchange="checkInputs()"></div>
+          <div id="arrival-words">Arrival Date <input type="text" id="datepicker-two" onchange="checkInputs()" disabled></div>
+        </div>
         </div>
         <div class="form-entry">
           <img src="images/book-a-flight4.png" width="50px">
@@ -455,21 +606,33 @@
         <div class="form-info">
           Flight Information:
           <ul>
-            <li>all flights are one-way, non-stop</li>
+            <li>all trips are non-stop flights</li>
             <li>flights are exclusively operated by Eastfront</li>
             <li>infants under 2 years old are free of admission</li>
           </ul>
         </div>
         <button type="button" id="search-flight" onclick="createTicket()" disabled="true">Search Flight</button>
+        <!-- NEW -->
+        <div class="type-entry">
+          <span>Type</span>
+          <select id="flight-type" onchange="checkInputs(); checkRoundTrip();">
+            <option value="none"></option>
+            <option value="one-way">One Way</option>
+            <option value="round-trip">Round Trip</option>
+          </select>
+        </div>
+        <!-- NEW -->
       </form>
     </main>
     
-    <div class="ticket-container">
+    <!-- one-way ticket skeleton -->
+    
+    <div class="ticket-container" id="ticket-select">
       <div class="ticket-header">
         <p id="flight-number"></p>
       </div>
       <img src="images/book-a-flight-ticket.png" id="ticket-image" width="14%">
-      <div id="ticket" class="ticket-styler">
+      <div class="ticket-styler">
         <div class="ticket-departure">
           <h3>Departure</h3>
           <p id="departure-city">cityName (XYZ)</p>
@@ -501,9 +664,90 @@
       </div>
     </div>
    
+   <!-- NEW ROUND TRIP -->
+   
+   <div id="ticket-select-RT"> <!-- big RT container -->
+    <!-- RT SKELETON 1 -->
+    <div class="ticket-container">
+      <div class="ticket-header">
+        <p id="flight-number-RT-one"></p>
+      </div>
+      <img src="images/book-a-flight-ticket.png" id="ticket-image-RT-one" width="14%">
+      <div class="ticket-styler">
+        <div class="ticket-departure">
+          <h3>Departure</h3>
+          <p id="departure-city-RT-one">cityName (XYZ)</p>
+          <p id="departure-date-RT-one">date</p>
+          <p id="departure-time-RT-one">time</p>
+        </div>
+        <div class="ticket-arrival">
+          <h3>Arrival</h3>
+          <p id="arrival-city-RT-one">cityName (XYZ)</p>
+          <p id="arrival-date-RT-one">date</p>
+          <p id="arrival-time-RT-one">time</p>
+        </div>
+        <div class="ticket-price">
+          <div class="price-amount-RT">
+            <h3>Price: <b id="price-RT-one">$xyz</b></h3>
+            <h3>Total Price: <b id="price-total-RT-one">$XYZ</b></h3>
+          </div>
+            <div class="price-amount-RT">
+              <p>Aircraft Type: Boeing 787</p>
+              <p id="price-people-RT-one">Number of Passengers: XYZ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+   <!-- RT SKELETON 2 -->
+    <div class="ticket-container">
+      <div class="ticket-header padding-extension">
+        <p id="flight-number-RT-two"></p>
+      </div>
+      <img src="images/book-a-flight-ticket.png" id="ticket-image-RT-two" width="14%">
+      <div class="ticket-styler">
+        <div class="ticket-departure">
+          <h3>Departure</h3>
+          <p id="departure-city-RT-two">cityName (XYZ)</p>
+          <p id="departure-date-RT-two">date</p>
+          <p id="departure-time-RT-two">time</p>
+        </div>
+        <div class="ticket-arrival">
+          <h3>Arrival</h3>
+          <p id="arrival-city-RT-two">cityName (XYZ)</p>
+          <p id="arrival-date-RT-two">date</p>
+          <p id="arrival-time-RT-two">time</p>
+        </div>
+        <div class="ticket-price">
+          <div class="price-amount-RT">
+            <h3>Price: <b id="price-RT-two">$xyz</b></h3>
+            <h3>Total Price: <b id="price-total-RT-two">$XYZ</b></h3>
+          </div>
+            <div class="price-amount-RT">
+              <p>Aircraft Type: Boeing 787</p>
+              <p id="price-people-RT-two">Number of Passengers: XYZ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+   <!-- CONFIRM BUTTON @ END -->
+   
+    <div class="RT-confirm">
+      <div></div>
+      <div>
+        <h4>Net Price: <b id="price-net-RT">$XYZ</b></h4>
+      </div>
+      <div>
+        <button id="confirm-payment-RT" onclick="confirmRT()">Confirm Payment</button>
+        <p id="thankyou-RT">Your flight has been successfully booked. Thank you for choosing Eastfront Airlines!</p>
+      </div>
+    </div>
+  </div>
+   
     <div class="content">
         <h2>Eastfront is currently serving these 9 major cities.</h2>
-        <p><i>We strive for our flights to be the fastest, safest, and the most affordable.</i></p>
+        <p><i>We strive to make our flights the fastest, safest, and the most affordable.</i></p>
         <iframe
         src="https://www.google.com/maps/d/embed?mid=1_PjZSe1TmZUfr_AXWuNpPPzuxI1L8y8i">
           <img src="images/map.png" alt="map of our flight services">
@@ -544,17 +788,22 @@
     */
     
       // gets the ticket menu div
-      var ticketMenu = document.getElementById("ticket");
+      var ticketMenu = document.getElementById("ticket-select");
       var ticketImg = document.getElementById("ticket-image");
+      var ticketMenuRT = document.getElementById("ticket-select-RT");
+      var ticketImgRT1 = document.getElementById("ticket-image-RT-one"); // img 1 for Round Trip
+      var ticketImgRT2 = document.getElementById("ticket-image-RT-two"); // img 2 for Round Trip
     
       // gets the search flight button
       var searchButton = document.getElementById("search-flight");
       
       // gets the confirm payment button
       var confirmButton = document.getElementById("confirm-payment");
+      var confirmButtonRT = document.getElementById("confirm-payment-RT")
       
       // gets the thankyou finalization message
       var thankYou = document.getElementById("thankyou");
+      var thankYouRT = document.getElementById("thankyou-RT");
       
       // gets the <select> entry for all 4 forms
       var departureEntry = document.getElementById("departure");
@@ -562,8 +811,12 @@
       var dateEntry = document.getElementById("datepicker");
       var peopleEntry = document.getElementById("people");
       
+      // NEW add-in for acquiring round-trip arrival and type
+      var flightType = document.getElementById("flight-type");
+      var date2Entry = document.getElementById("datepicker-two");
+      var date2Words = document.getElementById("arrival-words");
       
-      // gets the spots on the ticket to be filled-in
+      // gets the spots on the ticket to be filled-in (one-way)
       var departureCity = document.getElementById("departure-city");
       var departureDate = document.getElementById("departure-date");
       var departureTime = document.getElementById("departure-time");
@@ -578,6 +831,38 @@
       
       var flightNum = document.getElementById("flight-number");
       
+      // NEW gets the spots on Round Trip ticket 1 (different ID's)
+      var departureCityRT1 = document.getElementById("departure-city-RT-one");
+      var departureDateRT1 = document.getElementById("departure-date-RT-one");
+      var departureTimeRT1 = document.getElementById("departure-time-RT-one");
+      
+      var arrivalCityRT1 = document.getElementById("arrival-city-RT-one");
+      var arrivalDateRT1 = document.getElementById("arrival-date-RT-one");
+      var arrivalTimeRT1 = document.getElementById("arrival-time-RT-one");
+      
+      var priceRT1 = document.getElementById("price-RT-one");
+      var priceTotalRT1 = document.getElementById("price-total-RT-one");
+      var peopleRT1 = document.getElementById("price-people-RT-one");
+      
+      var flightNumRT1 = document.getElementById("flight-number-RT-one");
+      
+      // NEW gets the spots on Round Trip ticket 2 (different ID's as well)
+      var departureCityRT2 = document.getElementById("departure-city-RT-two");
+      var departureDateRT2 = document.getElementById("departure-date-RT-two");
+      var departureTimeRT2 = document.getElementById("departure-time-RT-two");
+      
+      var arrivalCityRT2 = document.getElementById("arrival-city-RT-two");
+      var arrivalDateRT2 = document.getElementById("arrival-date-RT-two");
+      var arrivalTimeRT2 = document.getElementById("arrival-time-RT-two");
+      
+      var priceRT2 = document.getElementById("price-RT-two");
+      var priceTotalRT2 = document.getElementById("price-total-RT-two");
+      var peopleRT2 = document.getElementById("price-people-RT-two");
+      
+      var flightNumRT2 = document.getElementById("flight-number-RT-two");
+      
+      // NEW total price of Round Trip
+      var priceNetRT = document.getElementById("price-net-RT");
       
       /* gets the selected responses chosen by the user
       *time is randomly chosen from an array, price is randomly generated */
@@ -587,11 +872,13 @@
       
       var arrivalCityResponse = arrivalEntry.options[arrivalEntry.selectedIndex].text;
       // *arrivalDate is same as departureDate
+      var arrivalDateResponseRT = date2Entry.value; // we have an update! arrival date is now used for round trip (one-day flight date is still same though)
       var arrivalTimes = ["10:09 AM", "10:17 AM", "10:24 AM", "10:35 AM", "10:47 AM", "10:58 AM", "11:11 AM", "11:12 AM"];
       
       var peopleResponse = peopleEntry.options[peopleEntry.selectedIndex].value;
       var randomPriceNum; // creates the random price number variable
-      var randomFlightNum; // cerates the random flight number variable
+      var randomFlightNum; // creates the random flight number variable
+      var oldflightNum; // checker for RT same flight nums
       
       function disableButton() {
         searchButton.disabled = true;
@@ -607,6 +894,19 @@
         searchButton.style.cursor = "pointer";
       }
       
+      /* NEW */
+      function checkRoundTrip() {
+        if (flightType.value === "round-trip") {
+          date2Entry.disabled = false;   // enable ariival date
+          date2Words.style.filter = "brightness(100%)";
+          date2Words.style.opacity = "1";
+        } else {
+          date2Entry.disabled = true;   // disable arrival date
+          date2Words.style.filter = "brightness(90%)";
+          date2Words.style.opacity = "0.6";
+        }
+      }
+      /* NEW */
       
       function checkInputs() { // keep search flight disabled until all entries are filled
         if
@@ -614,8 +914,12 @@
           arrivalEntry.options[arrivalEntry.selectedIndex].value === "none" ||            /* check arrival entry form */
           dateEntry.value === "" ||                                                       /* check date entry form (default value is nothing) */
           peopleEntry.options[peopleEntry.selectedIndex].value === "none" ||              /* check people entry form */
-          departureEntry.options[departureEntry.selectedIndex].value === arrivalEntry.options[arrivalEntry.selectedIndex].value)    /* check if departure and flight are the same */
+          departureEntry.options[departureEntry.selectedIndex].value === arrivalEntry.options[arrivalEntry.selectedIndex].value ||    /* check if departure and flight are the same */
+          flightType.value === "none") /* check type entry form */
           {
+          disableButton();
+        }
+        else if (flightType.value === "round-trip" && date2Entry.value === "") {
           disableButton();
         }
         else {
@@ -625,58 +929,152 @@
       
       
       function createTicket() { // update info and create the ticket
-        
-        // open up ticket menu
-        ticketMenu.style.display = "grid";
-        if (window.matchMedia("(min-width: 1151px)").matches) {
-          ticketImg.style.display = "initial";
+        ticketMenu.style.display = "none";
+        ticketMenuRT.style.display = "none";
+        if (flightType.value === "one-way") { // is it one way?
+          // open up ticket menu
+          ticketMenu.style.display = "block";
+          if (window.matchMedia("(min-width: 1151px)").matches) {
+            ticketImg.style.display = "initial";
+          }
+          else {
+            ticketImg.style.display = "none";
+          }
+          
+          // open confirm button
+          confirmButton.style.display = "block";
+          thankYou.style.display = "none";
+          
+          // disable button
+          disableButton();
+          
+          // update submission responses
+          departureCityResponse = departureEntry.options[departureEntry.selectedIndex].text;
+          departureDateResponse = dateEntry.value;
+          
+          arrivalCityResponse = arrivalEntry.options[arrivalEntry.selectedIndex].text;
+          // *arrivalDate is same as departureDate
+          
+          peopleResponse = peopleEntry.options[peopleEntry.selectedIndex].value;
+          
+          // create a random number for price and flight
+          randomPriceNum = 75 + Math.floor(Math.random() * 80);
+          randomFlightNum = 100 + Math.floor(Math.random() * 175);
+          
+          
+          // change the ticket info
+          departureCity.innerHTML = departureCityResponse;
+          departureDate.innerHTML = departureDateResponse;
+          departureTime.innerHTML = departureTimes[Math.floor(Math.random() * departureTimes.length)] + " (EST)";
+  
+          arrivalCity.innerHTML = arrivalCityResponse;
+          arrivalDate.innerHTML = departureDateResponse;  // set arrival date to same day as departure date
+          arrivalTime.innerHTML = arrivalTimes[Math.floor(Math.random() * arrivalTimes.length)] + " (EST)";
+          
+          people.innerHTML = "Number of Passengers: " + peopleResponse;
+          
+          price.innerHTML = "$" + randomPriceNum + " (per person)";
+          priceTotal.innerHTML = "$" + randomPriceNum * peopleResponse;
+          
+          flightNum.innerHTML = "Flight " + randomFlightNum;
         }
-        else {
-          ticketImg.style.display = "none";
+        else { // then it is round-trip
+          
+          // opens RT wrapper
+          ticketMenuRT.style.display = "block";
+          
+          if (window.matchMedia("(min-width: 1151px)").matches) {
+            ticketImgRT1.style.display = "initial";
+            ticketImgRT2.style.display = "initial";
+          }
+          else {
+            ticketImgRT1.style.display = "none";
+            ticketImgRT2.style.display = "none";
+          }
+          
+          // open confirm button
+          confirmButtonRT.style.display = "block";
+          thankYouRT.style.display = "none";
+          
+          // disable button
+          disableButton();
+          
+          // update submission responses
+          departureCityResponse = departureEntry.options[departureEntry.selectedIndex].text;
+          departureDateResponse = dateEntry.value;
+          
+          arrivalCityResponse = arrivalEntry.options[arrivalEntry.selectedIndex].text;
+          // *arrivalDate is same as departureDate
+          arrivalDateResponseRT = date2Entry.value; // add new arrival date for round trip
+          
+          peopleResponse = peopleEntry.options[peopleEntry.selectedIndex].value;
+          
+          
+          /* TICKET 1 */
+          
+          // create a random number for price and flight
+          randomPriceNum = 75 + Math.floor(Math.random() * 80);
+          randomFlightNum = 100 + Math.floor(Math.random() * 175);
+          
+          // change the ticket info (ticket 1)
+          departureCityRT1.innerHTML = departureCityResponse;
+          departureDateRT1.innerHTML = departureDateResponse;
+          departureTimeRT1.innerHTML = departureTimes[Math.floor(Math.random() * departureTimes.length)] + " (EST)";
+  
+          arrivalCityRT1.innerHTML = arrivalCityResponse;
+          arrivalDateRT1.innerHTML = departureDateResponse;  // set arrival date to same day as departure date
+          arrivalTimeRT1.innerHTML = arrivalTimes[Math.floor(Math.random() * arrivalTimes.length)] + " (EST)";
+          
+          peopleRT1.innerHTML = "Number of Passengers: " + peopleResponse;
+          
+          priceRT1.innerHTML = "$" + randomPriceNum + " (per person)";
+          priceTotalRT1.innerHTML = "$" + randomPriceNum * peopleResponse;
+          var sumPriceRT1 = randomPriceNum * peopleResponse; // used for calculating net price (local var!)
+          
+          flightNumRT1.innerHTML = "Flight " + randomFlightNum;
+          
+          
+          /* TICKET 2 */
+          
+          // create a random number for price and flight
+          oldFlightNum = randomFlightNum;
+          randomPriceNum = 75 + Math.floor(Math.random() * 80);
+          while (randomFlightNum === oldFlightNum) { // ensures flight numbers are not coincidentally the same
+            randomFlightNum = 100 + Math.floor(Math.random() * 175);
+          }
+          
+          // change the ticket info (ticket 2, flip some things)
+          departureCityRT2.innerHTML = arrivalCityResponse;
+          departureDateRT2.innerHTML = arrivalDateResponseRT;
+          departureTimeRT2.innerHTML = departureTimes[Math.floor(Math.random() * departureTimes.length)] + " (EST)";
+  
+          arrivalCityRT2.innerHTML = departureCityResponse;
+          arrivalDateRT2.innerHTML = arrivalDateResponseRT; // set arrival date to same day as departure date
+          arrivalTimeRT2.innerHTML = arrivalTimes[Math.floor(Math.random() * arrivalTimes.length)] + " (EST)";
+          
+          peopleRT2.innerHTML = "Number of Passengers: " + peopleResponse;
+          
+          priceRT2.innerHTML = "$" + randomPriceNum + " (per person)";
+          priceTotalRT2.innerHTML = "$" + randomPriceNum * peopleResponse;
+          var sumPriceRT2 = randomPriceNum * peopleResponse; // used for calculating net price (local var!)
+          
+          flightNumRT2.innerHTML = "Flight " + randomFlightNum;
+          
+          /* ADD NET PRICE */
+          
+          priceNetRT.innerHTML = "$" + (sumPriceRT1 + sumPriceRT2);
+          
         }
-        
-        // open confirm button
-        confirmButton.style.display = "block";
-        thankYou.style.display = "none";
-        
-        // disable button
-        disableButton();
-        
-        // update submission responses
-        departureCityResponse = departureEntry.options[departureEntry.selectedIndex].text;
-        departureDateResponse = dateEntry.value;
-        
-        arrivalCityResponse = arrivalEntry.options[arrivalEntry.selectedIndex].text;
-        // *arrivalDate is same as departureDate
-        
-        peopleResponse = peopleEntry.options[peopleEntry.selectedIndex].value;
-        
-        // create a random number for price and flight
-        randomPriceNum = 75 + Math.floor(Math.random() * 80);
-        randomFlightNum = 100 + Math.floor(Math.random() * 175);
-        
-        
-        // change the ticket info
-        departureCity.innerHTML = departureCityResponse;
-        departureDate.innerHTML = departureDateResponse;
-        departureTime.innerHTML = departureTimes[Math.floor(Math.random() * departureTimes.length)] + " (EST)";
-
-        arrivalCity.innerHTML = arrivalCityResponse;
-        arrivalDate.innerHTML = departureDateResponse;  // set arrival date to same day as departure date
-        arrivalTime.innerHTML = arrivalTimes[Math.floor(Math.random() * arrivalTimes.length)] + " (EST)";
-        
-        people.innerHTML = "Number of Passengers: " + peopleResponse;
-        
-        price.innerHTML = "$" + randomPriceNum + " (per person)";
-        priceTotal.innerHTML = "$" + randomPriceNum * peopleResponse;
-        
-        flightNum.innerHTML = "Flight " + randomFlightNum;
       }
       
       
       function confirm() { // confirm the ticket
         confirmButton.style.display = "none";
         thankYou.style.display = "block";
+      }
+      function confirmRT() {
+        confirmButtonRT.style.display = "none";
+        thankYouRT.style.display = "block";
       }
       
     </script>
