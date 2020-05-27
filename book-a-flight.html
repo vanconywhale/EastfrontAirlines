@@ -19,7 +19,11 @@
       from = $( "#datepicker" )
         .datepicker({ minDate: 0 })
         .on( "change", function() {
+          if (from.datepicker("getDate") === null) {
+            to.datepicker("option", "minDate", 0);
+          } else {
           to.datepicker( "option", "minDate", getDate( this ) );
+          }
         }),
         to = $( "#datepicker-two" ).datepicker({ minDate: 0 })
         .on( "change", function() {
@@ -130,10 +134,8 @@
       width: 115px;
       font-size: 15px;
     }
-
-    #arrival-words {
-      filter: brightness(90%);
-      opacity: 0.6;
+    #ticket-image-RT-one, #ticket-image-RT-two {
+      top: 59%;
     }
     
     .form-info {
@@ -583,14 +585,14 @@
           <img src="images/book-a-flight3.png" width="50px">
         <div class="date-row">
           <div>Departure Date <input type="text" id="datepicker" onchange="checkInputs()"></div>
-          <div id="arrival-words">Return Date <input type="text" id="datepicker-two" onchange="checkInputs()" disabled></div>
+          <div id="arrival-words">Return Date <input type="text" id="datepicker-two" onchange="checkInputs()"></div>
         </div>
         </div>
         <div class="form-entry">
           <img src="images/book-a-flight4.png" width="50px">
           <span>Number of People
           <select id="people" onchange="checkInputs()">
-            <option value="none"></option>
+            <!-- <option value="none"></option> -->
             <option value=1>1</option>
             <option value=2>2</option>
             <option value=3>3</option>
@@ -616,9 +618,9 @@
         <div class="type-entry">
           <span>Type</span>
           <select id="flight-type" onchange="checkInputs(); checkRoundTrip();">
-            <option value="none"></option>
-            <option value="one-way">One Way</option>
+            <!-- <option value="none"></option> -->
             <option value="round-trip">Round Trip</option>
+            <option value="one-way">One Way</option>
           </select>
         </div>
         <!-- NEW -->
@@ -897,7 +899,7 @@
       /* NEW */
       function checkRoundTrip() {
         if (flightType.value === "round-trip") {
-          date2Entry.disabled = false;   // enable ariival date
+          date2Entry.disabled = false;   // enable arrival date
           date2Words.style.filter = "brightness(100%)";
           date2Words.style.opacity = "1";
         } else {
@@ -913,9 +915,7 @@
           (departureEntry.options[departureEntry.selectedIndex].value === "none" ||       /* check departure entry form */
           arrivalEntry.options[arrivalEntry.selectedIndex].value === "none" ||            /* check arrival entry form */
           dateEntry.value === "" ||                                                       /* check date entry form (default value is nothing) */
-          peopleEntry.options[peopleEntry.selectedIndex].value === "none" ||              /* check people entry form */
-          departureEntry.options[departureEntry.selectedIndex].value === arrivalEntry.options[arrivalEntry.selectedIndex].value ||    /* check if departure and flight are the same */
-          flightType.value === "none") /* check type entry form */
+          departureEntry.options[departureEntry.selectedIndex].value === arrivalEntry.options[arrivalEntry.selectedIndex].value)    /* check if departure and flight are the same */
           {
           disableButton();
         }
