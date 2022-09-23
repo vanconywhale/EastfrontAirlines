@@ -1,4 +1,4 @@
-This website was created by RedMellon for the 2019 FBLA Website Design project.
+This website was created by vanconywhale for the 2019 FBLA Website Design project.
 
 Note: The website may not work properly in older browsers, such as internet explorer.
 
